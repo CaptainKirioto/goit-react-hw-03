@@ -35,3 +35,8 @@
   border: 1px solid black;
   border-radius: 5px;
 }
+
+.errorMessage {
+  color: red;
+  font-size: small;
+}
