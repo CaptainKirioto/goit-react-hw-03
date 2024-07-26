@@ -6,36 +6,52 @@ import ContactList from "./components/ContactList/ContactList";
 import contactsList from "./contactsList.json";
 
 function App() {
-  const [contacts, setContacts] = useState(() => {
+  /* ----- LOCAL STORAGE ----- */
+
+  // const [contacts, setContacts] = useState(() => {
+  //   const savedContacts = window.localStorage.getItem("Contacts");
+  //   return savedContacts ? JSON.parse(savedContacts) : contactsList;
+  // });
+
+  // useEffect(() => {
+  //   window.localStorage.setItem("Contacts", JSON.stringify(contacts));
+  // }, [contacts]);
+
+  const getSavedContacts = () => {
     const savedContacts = window.localStorage.getItem("Contacts");
     return savedContacts ? JSON.parse(savedContacts) : contactsList;
-  });
+  };
+
+  const saveContacts = (contacts) => {
+    window.localStorage.setItem("Contacts", JSON.stringify(contacts));
+  };
+
+  const [contacts, setContacts] = useState(getSavedContacts);
 
   useEffect(() => {
-    window.localStorage.setItem("Contacts", JSON.stringify(contacts));
+    saveContacts(contacts);
   }, [contacts]);
+
+  /* ----- ADDING CONTACTS ----- */
 
   const addContact = (newContact) => {
     setContacts((prevContacts) => [...prevContacts, newContact]);
   };
+
+  /* ----- DELETING CONTACTS ----- */
 
   const handleDelete = (id) => {
     const remainingContacts = contacts.filter((contact) => contact.id !== id);
     setContacts(remainingContacts);
   };
 
+  /* ----- FILTERING CONTACTS ----- */
+
   const [filter, setFilter] = useState("");
 
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
-
-  // const handleFilter = (query) => {
-  //   const filteredContacts = contacts.filter(
-  //     (contact) => query.toLowerCase === contact.name.toLowerCase
-  //   );
-  //   setContacts(filteredContacts);
-  // };
 
   return (
     <div className={s.wrapper}>

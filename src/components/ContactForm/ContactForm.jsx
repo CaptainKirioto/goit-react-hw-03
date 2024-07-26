@@ -13,11 +13,12 @@ const ContactForm = ({ addContact }) => {
     name: Yup.string()
       .min(3, "Longer, please!")
       .max(50, "Shorter, please!")
-      .required("This field is required!"),
+      .required("Type something in!"),
     number: Yup.string()
-      .required("This field is required!")
+      .required("Type something in!")
       .min(3, "Longer, please!")
-      .max(50, "Shorter, please!"),
+      .max(50, "Shorter, please!")
+      .matches(/^\+?[0-9-]+$/, "It's a phone NUMBER"),
   });
 
   const handleSubmit = (data, actions) => {

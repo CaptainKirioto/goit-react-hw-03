@@ -1,13 +1,13 @@
 .searchWrap {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .label {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 .input {
@@ -15,4 +15,5 @@
   outline: none;
   border: 1px solid black;
   border-radius: 5px;
+  width: 200px;
 }

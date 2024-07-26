@@ -4,7 +4,7 @@ const SearchBox = ({ value, onFilter }) => {
   return (
     <div className={s.searchWrap}>
       <label className={s.label}>
-        <span className={s.span}>Find contacts by name</span>
+        <span className={s.text}>Find contacts by name</span>
         <input
           className={s.input}
           value={value}
